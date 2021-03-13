@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('SCM Checkout') {
             steps{
-                git branch: 'main', url: 'https://github.com/MekkyMayata/ansible-config-mgt.git'
+                git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/MekkyMayata/ansible-config-mgt.git'
             }
         }
 
