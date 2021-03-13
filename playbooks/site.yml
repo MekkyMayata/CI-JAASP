@@ -11,3 +11,6 @@
   import_playbook: ../dynamic-assignments/env-vars.yml
   tags:
     - always
+
+- name: Include playbook for tooling webserver
+  import_playbook: ../dynamic-assignments/webservers.yml
