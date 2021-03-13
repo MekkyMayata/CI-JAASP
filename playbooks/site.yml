@@ -1,0 +1,13 @@
+---
+- name: Include dynamic variables
+  hosts: all
+
+- name: import the common playbook
+  import_playbook: ../static-assignments/common.yml
+  tags:
+    - always
+
+- name: include the env-vars playbook
+  import_playbook: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
