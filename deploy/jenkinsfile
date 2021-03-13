@@ -10,6 +10,7 @@ pipeline {
         stage('SCM Checkout') {
             steps{
                 git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/MekkyMayata/ansible-config-mgt.git'
+                sh "ls ${WORKSPACE}/deploy"
             }
         }
 
