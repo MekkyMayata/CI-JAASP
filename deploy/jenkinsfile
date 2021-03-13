@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    environment {
+        // withEnv pipeline syntax fails so resort to environment
+        ANSIBLE_CONFIG = "${WORKSPACE}/deploy/ansible.cfg"
+        COLLECTIONS_PATHS = "/var/lib/jenkins/.ansible/collections"
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps{
+                git branch: 'main', url: 'https://github.com/MekkyMayata/ansible-config-mgt.git'
+            }
+        }
+
+        stage('Execute Ansible') {
+            steps{
+                sh 'whoami'
+                echo "$ANSIBLE_CONFIG"
+                echo "$COLLECTIONS_PATHS"
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'
+            }
+        }
+
+        stage('Clean workspace on condition (True)') {
+            steps{
+                cleanWs cleanWhenSuccess: false, cleanWhenUnstable: false
+            }
+        }
+    }
+}
