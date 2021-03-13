@@ -13,4 +13,4 @@
     - always
 
 - name: Include playbook for tooling webserver
-  import_playbook: ../dynamic-assignments/webservers.yml
+  import_playbook: ../static-assignments/webservers.yml
