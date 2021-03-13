@@ -24,8 +24,7 @@ pipeline {
                 echo "$ANSIBLE_CONFIG"
                 echo "$COLLECTIONS_PATHS"
                 echo "${inventory_file}"
-                echo "${inventory}"
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '${inventory}', playbook: 'playbooks/site.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: "inventory/${inventory_file}", playbook: 'playbooks/site.yml'
             }
         }
 
