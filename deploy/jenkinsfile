@@ -19,7 +19,7 @@ pipeline {
 
         stage('Execute Ansible') {
             steps{
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: "inventory/${params.inventory_file}", playbook: 'playbooks/site.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: "inventory/${params.inventory_file}", playbook: 'playbooks/site.yml', skippedTags: 'always', tags: 'webserver_true'
             }
         }
 
