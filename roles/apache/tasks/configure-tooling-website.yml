@@ -1,11 +1,27 @@
 ---
+  - rpm_key:
+      state: present
+      key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
+
+  - rpm_key:
+      state: present
+      key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
+
+  - name: Install epel repo.
+    yum:
+      name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
+      state: present
+
+  - name: Install remi repo.
+    yum:
+      name: "http://rpms.remirepo.net/enterprise/remi-release-8.rpm"
+      state: present
+
 - name: install packages and repositories
   package:
     name: "{{ item }}"
     state: present
   loop:
-    - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     - git
     - mysql
     - php
