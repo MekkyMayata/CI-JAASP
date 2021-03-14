@@ -14,9 +14,8 @@
     - php-gd
     - php-mysqlnd
 
-- name: Enable DNF module
-  shell: |
-    dnf module enable -y php:remi-8.0
+# - name: Enable DNF module
+#   shell: dnf module enable -y php:remi-8.0
 
 - name: start and enable services
   service:
