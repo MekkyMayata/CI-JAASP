@@ -6,8 +6,8 @@
     baseurl: "{{ item.baseurl }}"
     enabled: yes
   loop:
-    - { name: 'epel', baseurl: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm }
-    - { name: 'php:remi-8.0', baseurl: https://rpms.remirepo.net/enterprise/remi-release-8.rpm }
+    - { name: 'epel', baseurl: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm' }
+    - { name: 'php:remi-8.0', baseurl: 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm' }
 
 - name: install packages
   package:
