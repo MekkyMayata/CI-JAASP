@@ -6,9 +6,7 @@ pipeline {
         COLLECTIONS_PATHS = "/var/lib/jenkins/.ansible/collections"
     }
 
-    options{
-        [parameters([string(defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration', name: 'inventory_file', trim: false)])]
-        }
+    options{[parameters([string(defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration', name: 'inventory_file', trim: false)])]}
 
     // parameters {
     //     string(name: 'inventory_file', defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration')
