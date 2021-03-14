@@ -129,3 +129,6 @@ mysql_replication_role: ''
 mysql_replication_master: ''
 # Same keys as `mysql_users` above.
 mysql_replication_user: []
+
+#*************************db host******************************
+db_host: '172.31.0.14'
