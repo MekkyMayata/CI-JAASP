@@ -1,0 +1,8 @@
+---
+- name: Clone a repo with separate git directory
+  ansible.builtin.git:
+    repo: https://github.com/MekkyMayata/tooling.git
+    dest: /home/ec2-user/toolings
+
+# - name: import the tooling db
+#   shell: "mysql -u webaccess -h {{ }} tooling -p < /home/ec2-user/tooling/tooling-db.sql"

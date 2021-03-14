@@ -12,6 +12,11 @@
   tags:
     - always
 
+  name: include playbook for db server
+  import_playbook: ../static-assignments/db.yml
+  tags:
+    - webserver_true
+
 - name: Include playbook for tooling webserver
   import_playbook: ../static-assignments/webservers.yml
   tags:
