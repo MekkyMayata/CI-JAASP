@@ -19,21 +19,21 @@
     name: "http://rpms.remirepo.net/enterprise/remi-release-8.rpm"
     state: present
 
-- name: install packages and repositories
-  package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - git
-    - mysql
-    - php
-    - php-cli
-    - php-common
-    - php-gd
-    - php-mysqlnd
+# - name: install packages and repositories
+#   package:
+#     name: "{{ item }}"
+#     state: present
+#   loop:
+#     - git
+#     - mysql
+#     - php
+#     - php-cli
+#     - php-common
+#     - php-gd
+#     - php-mysqlnd
 
-- name: Enable DNF module
-  shell: dnf module enable -y php:remi-8.0
+# - name: Enable DNF module
+#   shell: dnf module enable -y php:remi-8.0
 
 - name: start and enable services
   service:
