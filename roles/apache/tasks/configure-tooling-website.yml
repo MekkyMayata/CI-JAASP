@@ -16,4 +16,4 @@
     - "html/."
 
 - name: edit db connection
-  shell: "sed -i "s/'mysql.tooling.svc.cluster.local', 'admin', 'admin', 'tooling'/'172.31.0.11', 'webaccess', 'password', 'tooling'/" /var/www/html/functions.php"
+  shell: sed -i "s/'mysql.tooling.svc.cluster.local', 'admin', 'admin', 'tooling'/'172.31.0.11', 'webaccess', 'password', 'tooling'/" /var/www/html/functions.php
