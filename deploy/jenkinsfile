@@ -5,10 +5,12 @@ pipeline {
         ANSIBLE_CONFIG = "${WORKSPACE}/deploy/ansible.cfg"
         COLLECTIONS_PATHS = "/var/lib/jenkins/.ansible/collections"
     }
+    
+    properties([parameters([string(defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration', name: 'inventory_file', trim: false)])])
 
-    parameters {
-        string(name: 'inventory_file', defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration')
-    }
+    // parameters {
+    //     string(name: 'inventory_file', defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration')
+    // }
 
     stages {
         stage('SCM Checkout') {
@@ -20,11 +22,10 @@ pipeline {
 
         stage('Execute Ansible') {
             steps{
-                sh 'whoami'
-                echo "$ANSIBLE_CONFIG"
-                echo "$COLLECTIONS_PATHS"
+                // echo "$ANSIBLE_CONFIG"
+                // echo "$COLLECTIONS_PATHS"
                 echo "${inventory_file}"
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: "inventory/${inventory_file}", playbook: 'playbooks/site.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: "inventory/${params.inventory_file}", playbook: 'playbooks/site.yml'
             }
         }
 
