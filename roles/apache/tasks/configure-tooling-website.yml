@@ -19,6 +19,9 @@
     name: "http://rpms.remirepo.net/enterprise/remi-release-8.rpm"
     state: present
 
+- name: Enable DNF module
+  shell: dnf module enable -y php:remi-8.0
+  
 - name: install packages and repositories
   package:
     name: "{{ item }}"
@@ -31,9 +34,6 @@
     - php-common
     - php-gd
     - php-mysqlnd
-
-- name: Enable DNF module
-  shell: dnf module enable -y php:remi-8.0
 
 - name: start and enable services
   service:
