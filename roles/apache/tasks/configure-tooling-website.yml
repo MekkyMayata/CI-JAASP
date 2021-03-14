@@ -1,4 +1,14 @@
 ---
+- name: Add repository
+  yum_repository:
+    name: "{{ item.name }}"
+    description: EPEL YUM repo
+    baseurl: "{{ item.baseurl }}"
+    enabled: yes
+  loop:
+    - { name: 'epel', baseurl: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm }
+    - { name: 'php:remi-8.0', baseurl: https://rpms.remirepo.net/enterprise/remi-release-8.rpm }
+
 - name: install packages
   package:
     name: "{{ item }}"
@@ -6,6 +16,20 @@
   loop:
     - git
     - mysql
+    - php
+    - php-cli
+    - php-common
+    - php-gd
+    - php-mysqlnd
+
+- name: start and enable services
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
+  notify:
+    - restart apache
+
 
 # clone repo
 - name: Clone tooling repo
