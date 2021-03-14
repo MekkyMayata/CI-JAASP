@@ -6,8 +6,6 @@ pipeline {
         COLLECTIONS_PATHS = "/var/lib/jenkins/.ansible/collections"
     }
 
-    // options{[parameters([string(defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration', name: 'inventory_file', trim: false)])]}
-
     parameters {
         string(name: 'inventory_file', defaultValue: 'dev', description: 'Inventory file for the environment to deploy configuration')
     }
@@ -16,15 +14,11 @@ pipeline {
         stage('SCM Checkout') {
             steps{
                 git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/MekkyMayata/CI-JAASP.git'
-                sh "ls ${WORKSPACE}/deploy"
             }
         }
 
         stage('Execute Ansible') {
             steps{
-                // echo "$ANSIBLE_CONFIG"
-                // echo "$COLLECTIONS_PATHS"
-                echo "${inventory_file}"
                 ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: "inventory/${params.inventory_file}", playbook: 'playbooks/site.yml'
             }
         }
