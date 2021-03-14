@@ -1,8 +1,11 @@
 ---
-- name: install git
+- name: install packages
   package:
-    name: git
+    name: "{{ item }}"
     state: present
+  loop:
+    - git
+    - mysql
 
 # clone repo
 - name: Clone tooling repo
