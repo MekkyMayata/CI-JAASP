@@ -4,8 +4,8 @@
     name: "{{ item }}"
     state: present
   loop:
-    # - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    # - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    - https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     - git
     - mysql
     - php
@@ -14,16 +14,16 @@
     - php-gd
     - php-mysqlnd
 
-# - name: Enable DNF module
-#   shell: dnf module enable -y php:remi-8.0
+- name: Enable DNF module
+  shell: dnf module enable -y php:remi-8.0
 
-# - name: start and enable services
-#   service:
-#     name: php-fpm
-#     state: started
-#     enabled: yes
-  # notify:
-  #   - restart apache
+- name: start and enable services
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
+  notify:
+    - restart apache
 
 
 # clone repo
