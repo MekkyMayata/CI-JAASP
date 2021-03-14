@@ -46,3 +46,6 @@
     state: "{{ apache_state }}"
     enabled: true
 
+# *************************************************************************
+- name: configure-tooling-website
+  include_tasks: "configure-tooling-website.yml"
