@@ -1,19 +1,11 @@
 ---
-- name: Add repository
-  yum_repository:
-    name: "{{ item.name }}"
-    description: EPEL YUM repo
-    baseurl: "{{ item.baseurl }}"
-    enabled: yes
-  loop:
-    - { name: 'epel', baseurl: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm' }
-    - { name: 'php:remi-8.0', baseurl: 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm' }
-
-- name: install packages
+- name: install packages and repositories
   package:
     name: "{{ item }}"
     state: present
   loop:
+    - 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm'
+    - 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm'
     - git
     - mysql
     - php
@@ -21,6 +13,10 @@
     - php-common
     - php-gd
     - php-mysqlnd
+
+- name: Enable DNF module
+    shell: |
+      dnf module enable -y php:remi-8.0
 
 - name: start and enable services
   service:
