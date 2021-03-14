@@ -12,7 +12,7 @@
   tags:
     - always
 
-  name: include playbook for db server
+- name: include playbook for db server
   import_playbook: ../static-assignments/db.yml
   tags:
     - db_true
