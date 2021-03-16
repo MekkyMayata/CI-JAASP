@@ -1,0 +1,20 @@
+---
+- name: collate variables from env specific file, if it exists
+  hosts: all
+  tasks:
+    - name: looping through list of available files
+      include_vars: "{{ item }}"
+      with_first_found:
+        - files:
+            - dev.yml
+            - ci.yml
+            - pentest.yml
+            - stage.yml
+            - default.yml
+          paths:
+            - "{{ playbook_dir }}/../env-vars"
+      tags:
+        - always
+
+# absolute path is returned for each of the special variables (playbook_dir and inventory_file)
+# hence error when running task with {{ playbook_dir }} and {{ inventory_file }}
