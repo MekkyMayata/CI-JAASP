@@ -2,7 +2,7 @@
 # tasks file for artifactory
 - name: run update
   apt:
-    update_cache: yes
+    update_cache: True
     upgrade: True
 
 - name: install package(s)
