@@ -1,0 +1,7 @@
+---
+- name: play for artifact_repository hosts
+  hosts: artifact_repository
+  become: yes
+
+  roles:
+    - artifactory

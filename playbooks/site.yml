@@ -21,3 +21,6 @@
   import_playbook: ../static-assignments/webservers.yml
   tags:
     - webserver_true
+
+- name: include playbook for artifact_repository
+  import_playbook: ../static-assignments/artifactory.yml
