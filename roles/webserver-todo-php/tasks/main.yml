@@ -71,8 +71,7 @@
 
 - name: edit db connection
   shell: |
-    cd /var/www/html/php-todo_main/
-    php artisan migrate
+    cd /var/www/html/php-todo_main/ ; php artisan migrate
 
 - name: Touch file
   ansible.builtin.file:
