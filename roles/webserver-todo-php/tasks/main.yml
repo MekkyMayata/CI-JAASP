@@ -27,7 +27,7 @@
 
 - name: Enable DNF module
   shell: dnf module enable -y php:7.4
-  
+
 - name: install packages and repositories
   package:
     name: "{{ item }}"
@@ -39,7 +39,7 @@
     - php-cli
     - php-common
     - php-gd
-    - php-mysqld
+    - php-mysqlnd
     - wget
     - httpd
 
