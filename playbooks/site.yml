@@ -26,4 +26,4 @@
   import_playbook: ../static-assignments/artifactory.yml
 
 - name: include playbook for webserver-todo-php
-  import_playbook: ../static-assignments/webserver-todo-php
+  import_playbook: ../static-assignments/webserver-todo-php.yml
