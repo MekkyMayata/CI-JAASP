@@ -59,6 +59,11 @@
     dest: /home/ec2-user/
     username: "{{ artifactory_username }}"
     password: "{{ artifactory_password }}"
+
+- name: unzip artifact
+  shell: |
+    cd /home/ec2-user/
+    unzip php-todo.zip
   
 - name: move code to /var/www/html directory
   command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }} /var/www/html/
