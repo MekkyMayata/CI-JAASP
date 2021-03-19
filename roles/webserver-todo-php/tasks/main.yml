@@ -39,7 +39,7 @@
     - php-cli
     - php-common
     - php-gd
-    - php-mysql
+    - php-mysqld
     - wget
     - httpd
 
