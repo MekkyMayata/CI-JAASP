@@ -48,8 +48,8 @@
     name: php-fpm
     state: started
     enabled: yes
-  notify:
-    - restart apache
+  # notify:
+  #   - restart apache
 
 
 # get php-todo-artifact
