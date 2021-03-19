@@ -1,0 +1,5 @@
+---
+# defaults file for webserver-todo-php
+artifactory_username: admin
+artifactory_password: MekkyMayata1
+db_host_ip: 13.58.43.102

@@ -1,0 +1,79 @@
+---
+# tasks file for webserver-todo-php
+- name: get RPM-key
+  rpm_key:
+    state: present
+    key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
+
+- name: get EPEL-key
+  rpm_key:
+    state: present
+    key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
+
+- name: Install epel repo.
+  yum:
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
+    state: present
+
+- name: Install remi repo.
+  yum:
+    name: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+    state: present
+
+- name: Enable DNF module
+  shell: dnf module enable -y php:remi-7.4
+  
+- name: install packages and repositories
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - zip
+    - mysql
+    - php
+    - php-cli
+    - php-common
+    - php-gd
+    - php-mysql
+    - wget
+    - httpd
+
+- name: start and enable services
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
+  notify:
+    - restart apache
+
+
+# get php-todo-artifact
+- name: php-todo artifact
+  ansible.builtin.get_url:
+    url: http://3.141.200.246:8082/artifactory/php-todo/php-todo.zip
+    dest: /home/ec2-user/
+    username: "{{ artifactory_username }}"
+    password: "{{ artifactory_password }}"
+  
+- name: move code to /var/www/html directory
+  command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }} /var/www/html/
+  with_items:
+    - "php-todo-main"
+
+- name: edit db connection
+  shell: |
+    cd /var/www/html/php-todo-main/
+    php artisan migrate
+
+- name: Touch file
+  ansible.builtin.file:
+    path: /var/www/html/.env
+    state: touch
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: template file
+  ansible.builtin.template:
+    src: ".env.sample"
+    dest: /var/www/html/.env
