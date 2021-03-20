@@ -57,7 +57,7 @@
 # get php-todo-artifact
 - name: php-todo artifact
   ansible.builtin.get_url:
-    url: http://3.141.200.246:8082/artifactory/php-todo/php-todo.zip
+    url: http://"{{ artifactory_server }}":8082/artifactory/php-todo/php-todo.zip
     dest: /home/ec2-user/zip-files/
     username: "{{ artifactory_username }}"
     password: "{{ artifactory_password }}"
