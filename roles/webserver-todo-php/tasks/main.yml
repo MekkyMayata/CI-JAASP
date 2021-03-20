@@ -58,13 +58,13 @@
 - name: php-todo artifact
   ansible.builtin.get_url:
     url: http://3.141.200.246:8082/artifactory/php-todo/php-todo.zip
-    dest: /home/ec2-user/
+    dest: /home/ec2-user/zip-files/
     username: "{{ artifactory_username }}"
     password: "{{ artifactory_password }}"
 
 - name: unzip artifact
   ansible.builtin.unarchive:
-    src: /home/ec2-user/php-todo.zip
+    src: /home/ec2-user/zip-files/php-todo.zip
     dest: /home/ec2-user/
   
 - name: move code to /var/www/html directory
