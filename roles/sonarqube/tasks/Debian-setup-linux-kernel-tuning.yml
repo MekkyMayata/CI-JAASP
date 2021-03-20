@@ -31,7 +31,7 @@
   apt:
     upgrade: yes
     update_cache: yes
-    cache_valid_time: 0
+    cache_valid_time: 3600
 
 - name: setup swap space
   command: dd if=/dev/zero of=/swapfile bs=1M count=2048 ; chmod 0600 /swapfile ; mkswap /swapfile
