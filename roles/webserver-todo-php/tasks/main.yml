@@ -41,7 +41,6 @@
     - php-mysqlnd
     - php-zip
     - php-gd
-    - php-mcrypt
     - php-mbstring
     - php-xml
     - php-common
