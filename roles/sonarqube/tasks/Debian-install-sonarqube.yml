@@ -57,3 +57,5 @@
     src: sonar_service.j2
     dest: /etc/systemd/system/sonar.service
     owner: sonar
+  notify:
+    - start and enable sonar

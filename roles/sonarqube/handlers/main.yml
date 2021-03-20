@@ -11,3 +11,9 @@
     upgrade: yes
     update_cache: yes
     cache_valid_time: 0
+
+- name: start and enable sonar
+  service:
+    name: sonar
+    state: started
+    enabled: yes
