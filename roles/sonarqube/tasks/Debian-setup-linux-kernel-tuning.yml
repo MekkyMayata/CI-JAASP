@@ -1,6 +1,6 @@
 ---
 # Tune Linux Kernel
-- mame: set vm maximum map count
+- name: set vm maximum map count
   command: bash -c "echo {{ vm_max_map_count }} > /proc/sys/vm/max_map_count"
   ansible.posix.sysctl:
     # name: vm.max_map_count
