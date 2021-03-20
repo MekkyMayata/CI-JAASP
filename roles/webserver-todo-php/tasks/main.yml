@@ -21,7 +21,8 @@
     key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
 
 - name: check
-  debug: "{{ ansible_distribution_major_version }}"
+  debug: 
+    var: "{{ ansible_distribution_major_version }}"
 
 # - name: Install remi repo.
 #   yum:
