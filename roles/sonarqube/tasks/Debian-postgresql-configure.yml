@@ -65,13 +65,13 @@
     state: present
 
 - name: Create a new database with name "sonarqube"
-  community.postgresql.postgresql_db:
   #   become_method: su
-    # become_user: postgres
+  become_user: postgres
+  community.postgresql.postgresql_db:
     name: sonarqube
 
 - name: Create sonar user
-  # become_user: postgres
+  become_user: postgres
   postgresql_user:
     name: sonar
     password: sonar

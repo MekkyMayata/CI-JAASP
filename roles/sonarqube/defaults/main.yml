@@ -15,6 +15,6 @@ apt_packages:
 postgres_username: postgres
 linux_postgres_password: password
 assigned_role: no
-postgres_auth_method: md5
+postgres_auth_method: md5 # or peer
 
 lsb_release: focal
