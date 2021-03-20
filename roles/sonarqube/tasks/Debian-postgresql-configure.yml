@@ -63,7 +63,7 @@
 
 - name: Create a new database with name "sonarqube"
   community.postgresql.postgresql_db:
-    become_user: postgres
+    # become_user: postgres
     name: sonarqube
 
 - name: Create postgres user
