@@ -16,7 +16,7 @@
   register: sonar_stat
 
 - name: Move sonarqube
-  command: mv /opt/sonarqube-7.9.3.zip /opt/sonarqube
+  command: cp -r /opt/sonarqube-7.9.3.zip /opt/sonarqube
   when: sonar_stat.stat.exists
 
 - name: Ensure group "sonar" exists
