@@ -8,12 +8,13 @@
     # state: present
 
 - name: set fs file-max
-  command: bash -c "echo {{ fs_file-max }} > /proc/sys/fs/fs_file-max"
+  command: bash -c "echo {{ fs_file-max }} > /proc/sys/fs/file-max"
   # ansible.posix.sysctl:
   #   name: fs.file-max
   #   value: "{{ fs_file-max }}"
   #   state: present
 
+####N.B: ansible-galaxy collection install community.general on ansible master
 - name: configure system settings, max number of file descriptors and number of user processes
   community.general.pam_limits:
     domain: sonarqube
