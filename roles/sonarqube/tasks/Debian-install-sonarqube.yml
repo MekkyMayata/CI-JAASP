@@ -13,7 +13,7 @@
 
 - name: Move sonarqube
   command: mv /opt/sonarqube-7.9.3 /opt/sonarqube
-  when: move_sonar == 1
+  when: move_sonar == "yes"
 
 - name: Ensure group "sonar" exists
   ansible.builtin.group:

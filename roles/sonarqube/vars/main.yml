@@ -1,7 +1,7 @@
 ---
 # vars file for sonarqube
 run_pip_script: 0
-move_sonar: 0
+move_sonar: "yes"
 swap_status: "on"
 
 # BASE_GROUPS:
