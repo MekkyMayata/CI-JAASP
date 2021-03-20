@@ -20,69 +20,72 @@
     state: present
     key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
 
-- name: Install remi repo.
-  yum:
-    name: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
-    state: present
+- name: check
+  command: echo "{{ ansible_distribution_major_version }}"
 
-- name: Enable DNF module
-  command: dnf module enable -y php:remi-{{ php_version }}
+# - name: Install remi repo.
+#   yum:
+#     name: "http://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm"
+#     state: present
 
-- name: install packages and repositories
-  package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - zip
-    - mysql
-    - php
-    - php-cli
-    - php-common
-    - php-gd
-    - php-mysqlnd
-    - wget
-    - httpd
+# - name: Enable DNF module
+#   command: dnf module enable -y php:remi-{{ php_version }}
 
-- name: start and enable services
-  service:
-    name: php-fpm
-    state: started
-    enabled: yes
-  # notify:
-  #   - restart apache
+# - name: install packages and repositories
+#   package:
+#     name: "{{ item }}"
+#     state: present
+#   loop:
+#     - zip
+#     - mysql
+#     - php
+#     - php-cli
+#     - php-common
+#     - php-gd
+#     - php-mysqlnd
+#     - wget
+#     - httpd
+
+# - name: start and enable services
+#   service:
+#     name: php-fpm
+#     state: started
+#     enabled: yes
+#   # notify:
+#   #   - restart apache
 
 
-# get php-todo-artifact
-- name: php-todo artifact
-  ansible.builtin.get_url:
-    url: http://3.141.200.246:8082/artifactory/php-todo/php-todo.zip
-    dest: /home/ec2-user/
-    username: "{{ artifactory_username }}"
-    password: "{{ artifactory_password }}"
+# # get php-todo-artifact
+# - name: php-todo artifact
+#   ansible.builtin.get_url:
+#     url: http://3.141.200.246:8082/artifactory/php-todo/php-todo.zip
+#     dest: /home/ec2-user/
+#     username: "{{ artifactory_username }}"
+#     password: "{{ artifactory_password }}"
 
-- name: unzip artifact
-  ansible.builtin.unarchive:
-    src: /home/ec2-user/php-todo.zip
-    dest: /home/ec2-user/
+# - name: unzip artifact
+#   ansible.builtin.unarchive:
+#     src: /home/ec2-user/php-todo.zip
+#     dest: /home/ec2-user/
   
-- name: move code to /var/www/html directory
-  command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }} /var/www/html/
-  with_items:
-    - "php-todo_main"
+# - name: move code to /var/www/html directory
+#   command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }} /var/www/html/
+#   with_items:
+#     - "php-todo_main"
 
-# - name: edit db connection
-#   shell: |
-#     cd /var/www/html/php-todo_main/ ; php artisan migrate
+# # - name: edit db connection
+# #   shell: |
+# #     cd /var/www/html/php-todo_main/ ; php artisan migrate
 
-- name: Touch file
-  ansible.builtin.file:
-    path: /var/www/html/.env
-    state: touch
-    mode: '0644'
-    owner: root
-    group: root
+# - name: Touch file
+#   ansible.builtin.file:
+#     path: /var/www/html/.env
+#     state: touch
+#     mode: '0644'
+#     owner: root
+#     group: root
 
-- name: template file
-  ansible.builtin.template:
-    src: ".env.sample"
-    dest: /var/www/html/.env
+# - name: template file
+#   ansible.builtin.template:
+#     src: ".env.sample"
+#     dest: /var/www/html/.env
