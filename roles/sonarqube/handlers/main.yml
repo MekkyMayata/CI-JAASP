@@ -13,7 +13,7 @@
     cache_valid_time: 0
 
 #******NB: ansible-galaxy collection install ansible.posix
-- name: Mount swap
+- name: mount swap
   ansible.posix.mount:
     path: none
     src: /swapfile
