@@ -66,6 +66,7 @@
   ansible.builtin.unarchive:
     src: /home/ec2-user/zip-files/php-todo.zip
     dest: /home/ec2-user/
+    remote_src: yes
   
 - name: move code to /var/www/html directory
   command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }} /var/www/html/
