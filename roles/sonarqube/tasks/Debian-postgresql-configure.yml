@@ -38,7 +38,9 @@
     - postgresql-contrib
     - python-setuptools
     - python3-pip
-
+    - libpq-dev 
+    - python-dev
+  
 - name: Creating user postgres without admin access
   user:
     name: "{{ postgres_username }}"
@@ -51,7 +53,7 @@
     name: postgresql
     state: started
     enabled: yes
-    
+
 # install pip2 here
   
 - name: Make sure psycopg2 is installed (subsequent step requires it)
