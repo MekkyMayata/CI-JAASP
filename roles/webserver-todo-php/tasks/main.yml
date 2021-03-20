@@ -69,7 +69,7 @@
     remote_src: yes
   
 - name: move code to /var/www/html directory
-  command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }} /var/www/html/
+  command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }}/* /var/www/html/
   with_items:
     - "php-todo_main"
 
@@ -89,3 +89,8 @@
   ansible.builtin.template:
     src: ".env.sample"
     dest: /var/www/html/.env
+
+# edit httpd conf DirectoryIndex
+# edit httpd conf DocumentRoot /var/www/html/public
+# restart php-fpm, httpd
+# set selinux boolean setsebool -P httpd_can_network_connect 1
