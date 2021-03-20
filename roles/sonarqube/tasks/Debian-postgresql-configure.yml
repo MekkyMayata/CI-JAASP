@@ -81,7 +81,7 @@
   community.postgresql.postgresql_privs:
     db: sonarqube
     privs: ALL
-    type: schema
+    type: database
     # objs: ALL_IN_SCHEMA
     role: sonar
 
