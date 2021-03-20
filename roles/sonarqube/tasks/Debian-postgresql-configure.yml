@@ -82,7 +82,7 @@
     db: sonarqube
     privs: ALL
     type: schema
-    objs: ALL_IN_SCHEMA
+    # objs: ALL_IN_SCHEMA
     role: sonar
 
 
