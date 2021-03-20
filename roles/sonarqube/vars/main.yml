@@ -2,6 +2,7 @@
 # vars file for sonarqube
 run_pip_script: 0
 move_sonar: 0
+swap_status: off
 
 # BASE_GROUPS:
 #   - group: admins

@@ -26,4 +26,15 @@
     - { limit_type: '-', limit_item: 'nproc', value: "{{ max_no_of_user_processes }}" }
   notify: 
     - reload system settings
-    - apt update and upgrade
+
+- name: apt update and upgrade
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 0
+
+- name: setup swap space
+  command: dd if=/dev/zero of=/swapfile bs=1M count=2048 ; chmod 0600 /swapfile ; mkswap /swapfile
+  when: swap_status == "on"
+  notify:
+    - edit fstab

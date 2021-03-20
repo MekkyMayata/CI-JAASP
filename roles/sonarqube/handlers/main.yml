@@ -11,3 +11,10 @@
     upgrade: yes
     update_cache: yes
     cache_valid_time: 0
+
+- name: Mount swap
+  ansible.posix.mount:
+    path: none
+    src: /swapfile
+    fstype: swap
+    state: present
