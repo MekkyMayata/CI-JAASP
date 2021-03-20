@@ -1,3 +1,11 @@
 ---
 # vars file for sonarqube
 run_pip_script: 1
+
+BASE_GROUPS:
+  - group: admins
+    gid: 3000
+
+BASE_USERS:
+    - user: sonar
+    groups: admins

@@ -50,14 +50,6 @@
     - { regexp: '^#sonar.jdbc.password=', line: 'sonar.jdbc.password=sonar' }
     - { regexp: '^(#sonar.jdbc.url=jdbc:postgresql).', line: 'sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube' }
 
-# - name: add sonarqube jdbc url property
-#   ansible.builtin.lineinfile:
-#     path: /opt/sonarqube/conf/sonar.properties
-#     regexp: '^sonar.jdbc.password='
-#     insertafter: '^sonar.jdbc.password='
-#     line: sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube
-
-
 - name: edit sonar script file
   ansible.builtin.lineinfile:
     path: /opt/sonarqube/bin/linux-x86-64/sonar.sh
