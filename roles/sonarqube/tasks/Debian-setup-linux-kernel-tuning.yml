@@ -34,7 +34,7 @@
     cache_valid_time: 3600
 
 - name: setup swap space
-  command: dd if=/dev/zero of=/swapfile bs=1M count=2048 ; chmod 0600 /swapfile ; mkswap /swapfile
+  shell: dd if=/dev/zero of=/swapfile bs=1M count=2048 ; chmod 0600 /swapfile ; mkswap /swapfile
   when: swap_status == "on"
   notify:
     - edit fstab
