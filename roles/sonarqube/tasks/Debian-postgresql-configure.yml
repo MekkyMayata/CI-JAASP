@@ -35,7 +35,8 @@
   loop:
     - postgresql 
     - postgresql-contrib
-
+    - python-setuptools
+    
 - name: Make sure psycopg2 is installed (subsequent step requires it)
   pip:
     name: psycopg2
