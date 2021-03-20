@@ -48,7 +48,7 @@
     password: "{{ linux_postgres_password | password_hash('sha512') }}"
   when:  assigned_role == "no"
 
-- name: Create a new database with name "acme"
+- name: Create a new database with name "sonarqube"
   community.postgresql.postgresql_db:
     name: sonarqube
 
