@@ -24,13 +24,13 @@
     name: sonar
     state: present
 
-- name: Added a consultant whose account you want to expire
+- name: Add a sonar user
   ansible.builtin.user:
     name: sonar
     home: /opt/sonarqube
     comment: user to run SonarQube
     shell: /bin/bash
-    groups: sonar
+    groups: sonar,sudo
 
 - name: Recursively change ownership of a sonarqube home
   ansible.builtin.file:

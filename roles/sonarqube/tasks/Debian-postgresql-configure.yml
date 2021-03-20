@@ -11,9 +11,17 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    validate: '/usr/sbin/visudo -cf %s'
   loop:
     - { src: "postgresql-repo-list.j2", dest: "/etc/apt/sources.list.d/pgdg.list" }
     - { src: "postgres_pg_hba.j2", dest: "/etc/postgresql/13/main/pg_hba.conf" }
+
+# - name: template sudoers.d (for sonar user)
+#   ansible.builtin.template:
+#     src: sudoers.j2
+#     dest: /etc/sudoers.d/sudoers
+#     mode: 0440
+#     validate: '/usr/sbin/visudo -cf %s'
 
   # ansible.builtin.apt_repository:
   #   repo: deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main
@@ -47,7 +55,7 @@
 - name: Creating user postgres without admin access
   user:
     name: "{{ postgres_username }}"
-    password: "{{ linux_postgres_password | password_hash('sha512') }}"
+    password: "{{ password | password_hash('sha512') }}"
   when: assigned_role == "no"
 
 
@@ -58,7 +66,6 @@
     enabled: yes
 
 # install pip2 here
-  
 - name: Make sure psycopg2 is installed (subsequent step requires it)
   pip:
     name: psycopg2
@@ -84,5 +91,3 @@
     type: database
     # objs: ALL_IN_SCHEMA
     role: sonar
-
-
