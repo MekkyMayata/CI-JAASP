@@ -55,3 +55,9 @@
     path: /opt/sonarqube/bin/linux-x86-64/sonar.sh
     regexp: '^#RUN_AS_USER='
     line: RUN_AS_USER=sonar
+
+- name: template sonar_service file
+  ansible.builtin.template:
+    src: sonar_service.j2
+    dest: /etc/systemd/system/sonar.service
+    owner: sonar
