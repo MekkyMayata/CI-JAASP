@@ -7,4 +7,4 @@
   
 - name: run script
   command: python2 /home/ec2-user/get-pip.py
-  when: run_pip_script == "yes"
+  when: run_pip_script == yes
