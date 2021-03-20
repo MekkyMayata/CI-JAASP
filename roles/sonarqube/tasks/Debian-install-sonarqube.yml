@@ -46,9 +46,9 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   loop:
-    - { regexp: '^#sonar.jdbc.username=', line: sonar.jdbc.username=sonar }
-    - { regexp: '^#sonar.jdbc.password=', line: sonar.jdbc.password=sonar }
-    - { regexp: '^(#sonar.jdbc.url=jdbc:postgresql).', line: sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube }
+    - { regexp: '^#sonar.jdbc.username=', line: 'sonar.jdbc.username=sonar' }
+    - { regexp: '^#sonar.jdbc.password=', line: 'sonar.jdbc.password=sonar' }
+    - { regexp: '^(#sonar.jdbc.url=jdbc:postgresql).', line: 'sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube' }
 
 # - name: add sonarqube jdbc url property
 #   ansible.builtin.lineinfile:
