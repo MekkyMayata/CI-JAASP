@@ -37,4 +37,4 @@
   shell: dd if=/dev/zero of=/swapfile bs=1M count=2048 ; chmod 0600 /swapfile ; mkswap /swapfile
   when: swap_status == "on"
   notify:
-    - edit fstab
+    - mount swap
