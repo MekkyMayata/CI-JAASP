@@ -47,7 +47,7 @@
     line: "{{ item.line }}"
   loop:
     - { regexp: '^#sonar.jdbc.username=', line: sonar.jdbc.username=sonar }
-    - { regexp: '^#sonar.jdbc.password=', line: sonar.jdbc.username=sonar }
+    - { regexp: '^#sonar.jdbc.password=', line: sonar.jdbc.password=sonar }
 
 - name: add sonarqube jdbc url property
   ansible.builtin.lineinfile:
