@@ -11,6 +11,9 @@
 #   include_tasks: "{{ role_path }}/tasks/configure-java-symbolic-links.yml"
 #   when: "there are more than one options"
 
+- name: install pip2
+  include_tasks: "{{ role_path }}/tasks/Debian-install-pip.yml"
+  
 ####N.B: ansible-galaxy collection install community.postgresql ansible master
 - name: setup postgreSQL db
   include_tasks: "{{ role_path }}/tasks/Debian-postgresql-configure.yml"

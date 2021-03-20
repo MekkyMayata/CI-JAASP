@@ -45,7 +45,7 @@
   user:
     name: "{{ postgres_username }}"
     password: "{{ linux_postgres_password | password_hash('sha512') }}"
-  when:  assigned_role == "no"
+  when: assigned_role == "no"
 
 
 - name: start and enable postgresql
