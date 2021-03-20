@@ -8,7 +8,7 @@
     # state: present
 
 - name: set fs file-max
-  command: bash -c "echo {{ fs_file-max }} > /proc/sys/fs/file-max"
+  command: bash -c "echo {{ fs_file_max }} > /proc/sys/fs/file-max"
   # ansible.posix.sysctl:
   #   name: fs.file-max
   #   value: "{{ fs_file-max }}"
