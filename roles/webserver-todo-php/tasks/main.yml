@@ -25,7 +25,7 @@
     state: present
 
 - name: Enable DNF module
-  command: dnf module enable -y php:remi-{{ php_version }}
+  command: dnf module enable -y php:{{ php_version }}
 
 - name: install packages and repositories
   package:
