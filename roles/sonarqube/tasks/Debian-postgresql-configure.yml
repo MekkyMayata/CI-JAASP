@@ -3,7 +3,7 @@
   ansible.builtin.apt_repository:
     repo: deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main
     state: present
-    filename: pgdg.list
+    filename: /etc/apt/sources.list.d/pgdg.list
 
 # - name: Download the PostgreSQL software
 #   get_url:

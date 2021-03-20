@@ -1,5 +1,6 @@
 ---
 # tasks file for sonarqube
+####N.B: ansible-galaxy collection install community.general on ansible master
 - name: tune linux kernel
   include_tasks: "{{ role_path }}/tasks/Debian-setup-linux-kernel-tuning.yml"
 
@@ -10,6 +11,7 @@
 #   include_tasks: "{{ role_path }}/tasks/configure-java-symbolic-links.yml"
 #   when: "there are more than one options"
 
+####N.B: ansible-galaxy collection install community.postgresql ansible master
 - name: setup postgreSQL db
   include_tasks: "{{ role_path }}/tasks/Debian-postgresql-configure.yml"
 
