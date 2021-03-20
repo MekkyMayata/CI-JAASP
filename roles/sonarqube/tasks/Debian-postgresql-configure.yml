@@ -28,15 +28,17 @@
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc 
     state: present
 
-- name: install postgresql db server
+- name: install postgresql db server and neccessary packages
   apt:
     name: "{{ item }}"
     state: present
+    update_cache: yes
   loop:
     - postgresql 
     - postgresql-contrib
     - python-setuptools
-    
+    - python-pip
+
 - name: Make sure psycopg2 is installed (subsequent step requires it)
   pip:
     name: psycopg2
