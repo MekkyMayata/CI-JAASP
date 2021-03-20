@@ -10,8 +10,8 @@ apt_packages:
 - unzip
 - openjdk-11-jdk
 - openjdk-11-jre
-# - python-dev
-# - python3-dev
+- python-dev
+- python3-dev
 
 postgres_username: postgres
 linux_postgres_password: password
