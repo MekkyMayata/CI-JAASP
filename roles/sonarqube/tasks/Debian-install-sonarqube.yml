@@ -11,13 +11,13 @@
     dest: /opt/
     remote_src: yes
 
-# - name: stat /opt/sonarqube-7.9.3.zip
-#   stat: path=/opt/sonarqube-7.9.3.zip
-#   register: sonar_stat
+- name: stat /opt/sonarqube-7.9.3
+  stat: path=/opt/sonarqube-7.9.3
+  register: sonar_stat
 
-# - name: Move sonarqube
-#   command: cp -r /opt/sonarqube-7.9.3.zip /opt/sonarqube
-#   when: sonar_stat.stat.exists
+- name: Move sonarqube
+  command: mv /opt/sonarqube-7.9.3 /opt/sonarqube
+  when: sonar_stat.stat.exists
 
 # - name: Ensure group "sonar" exists
 #   ansible.builtin.group:
