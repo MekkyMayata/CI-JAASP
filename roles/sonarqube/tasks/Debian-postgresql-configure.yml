@@ -39,6 +39,10 @@
     - python-setuptools
     - python3-pip
 
+- name: Add nginx stable repository from PPA and install its signing key on Ubuntu target
+  ansible.builtin.apt_repository:
+    repo: universe
+  
 - name: Make sure psycopg2 is installed (subsequent step requires it)
   pip:
     name: psycopg2
