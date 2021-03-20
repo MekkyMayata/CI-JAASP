@@ -1,10 +1,5 @@
 ---
 # tasks file for webserver-todo-php
-- name: get RPM-key
-  rpm_key:
-    state: present
-    key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
-
 - name: get EPEL-key
   rpm_key:
     state: present
@@ -15,10 +10,15 @@
     name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm"
     state: present
 
-- name: get remi-key
+# - name: get remi-key
+#   rpm_key:
+#     state: present
+#     key: http://rpms.famillecollet.com/RPM-GPG-KEY-remi
+
+- name: get remi_repo_gpg_key
   rpm_key:
     state: present
-    key: http://rpms.famillecollet.com/RPM-GPG-KEY-remi
+    key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
 
 - name: Install remi repo.
   yum:
@@ -26,7 +26,7 @@
     state: present
 
 - name: Enable DNF module
-  shell: dnf module enable -y php:7.4
+  command: dnf module enable -y php:remi-{{ php_version }}
 
 - name: install packages and repositories
   package:
@@ -61,17 +61,18 @@
     password: "{{ artifactory_password }}"
 
 - name: unzip artifact
-  shell: |
-    cd /home/ec2-user/ ; unzip php-todo.zip
+  ansible.builtin.unarchive:
+    src: /home/ec2-user/php-todo.zip
+    dest: /home/ec2-user/
   
 - name: move code to /var/www/html directory
   command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }} /var/www/html/
   with_items:
     - "php-todo_main"
 
-- name: edit db connection
-  shell: |
-    cd /var/www/html/php-todo_main/ ; php artisan migrate
+# - name: edit db connection
+#   shell: |
+#     cd /var/www/html/php-todo_main/ ; php artisan migrate
 
 - name: Touch file
   ansible.builtin.file:

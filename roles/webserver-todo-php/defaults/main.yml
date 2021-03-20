@@ -3,3 +3,7 @@
 artifactory_username: admin
 artifactory_password: MekkyMayata1
 db_host_ip: 13.58.43.102
+php_version: 7.4
+
+# remi_repo_url: "https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm"
+# remi_repo_gpg_key_url: "https://rpms.remirepo.net/RPM-GPG-KEY-remi2018"
