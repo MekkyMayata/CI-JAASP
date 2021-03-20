@@ -7,10 +7,13 @@
     owner: root
     group: root
 
-- name: template specified repository into sources list
+- name: template postgresql pg_hba.conf (for postgres user auth)
   ansible.builtin.template:
-    src: "postgresql-repo-list.j2"
-    dest: /etc/apt/sources.list.d/pgdg.list
+    src: 
+    dest: 
+  loop:
+    - { src: "postgresql-repo-list.j2", dest: "/etc/apt/sources.list.d/pgdg.list" }
+    - { src: "postgres_pg_hba.j2", dest: "/etc/postgresql/13/main/pg_hba.conf" }
 
   # ansible.builtin.apt_repository:
   #   repo: deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main
@@ -64,7 +67,7 @@
 - name: Create a new database with name "sonarqube"
   community.postgresql.postgresql_db:
   #   become_method: su
-  #   become_user: postgres
+    # become_user: postgres
     name: sonarqube
 
 - name: Create sonar user
