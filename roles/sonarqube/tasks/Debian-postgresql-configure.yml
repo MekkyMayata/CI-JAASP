@@ -9,8 +9,8 @@
 
 - name: template postgresql pg_hba.conf (for postgres user auth)
   ansible.builtin.template:
-    src: 
-    dest: 
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
   loop:
     - { src: "postgresql-repo-list.j2", dest: "/etc/apt/sources.list.d/pgdg.list" }
     - { src: "postgres_pg_hba.j2", dest: "/etc/postgresql/13/main/pg_hba.conf" }
