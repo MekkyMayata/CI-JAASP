@@ -14,8 +14,4 @@
 
 #******NB: ansible-galaxy collection install ansible.posix
 - name: mount swap
-  ansible.posix.mount:
-    path: none
-    src: /swapfile
-    fstype: swap
-    state: present
+  shell: swapon -a
