@@ -7,8 +7,5 @@
 [nginx]
 18.159.134.59
 
-[sonarqube:vars]
-ansible_python_interpreter=/usr/bin/python
-
 [sonarqube]
 172.31.0.20
