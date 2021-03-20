@@ -36,6 +36,11 @@
     - postgresql 
     - postgresql-contrib
 
+- name: Make sure psycopg2 is installed (subsequent step requires it)
+  pip:
+    name: psycopg2
+    state: present
+
 - name: start and enable postgresql
   service:
     name: postgresql
