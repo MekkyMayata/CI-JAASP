@@ -1,0 +1,64 @@
+---
+# get sonarqube zip file
+- name: download installation files
+  ansible.builtin.get_url:
+    url: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.3.zip
+    dest: /tmp
+
+- name: unzip sonarqube
+  ansible.builtin.unarchive:
+    src: /tmp/sonarqube-7.9.3.zip
+    dest: /opt/
+    remote_src: yes
+
+- name: stat /opt/sonarqube-7.9.3.zip
+  stat: path=/opt/sonarqube-7.9.3.zip
+  register: sonar_stat
+
+- name: Move sonarqube
+  command: mv /opt/sonarqube-7.9.3.zip /opt/sonarqube
+  when: sonar_stat.stat.exists
+
+- name: Ensure group "sonar" exists
+  ansible.builtin.group:
+    name: sonar
+    state: present
+
+- name: Added a consultant whose account you want to expire
+  ansible.builtin.user:
+    name: sonar
+    home: /opt/sonarqube
+    comment: user to run SonarQube
+    shell: /bin/bash
+    groups: sonar
+
+- name: Recursively change ownership of a sonarqube home
+  ansible.builtin.file:
+    path: /opt/sonarqube
+    state: directory
+    recurse: yes
+    owner: sonar
+    group: sonar
+
+- name: replace sonarqube properties
+  ansible.builtin.lineinfile:
+    path: /opt/sonarqube/conf/sonar.properties
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: '^#sonar.jdbc.username=', line: sonar.jdbc.username=sonar }
+    - { regexp: '^#sonar.jdbc.password=', line: sonar.jdbc.username=sonar }
+
+- name: add sonarqube jdbc url property
+  ansible.builtin.lineinfile:
+    path: /opt/sonarqube/conf/sonar.properties
+    regexp: '^sonar.jdbc.password='
+    insertafter: '^sonar.jdbc.password='
+    line: sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube
+
+
+- name: edit sonar script file
+  ansible.builtin.lineinfile:
+    path: /opt/sonarqube/bin/linux-x86-64/sonar.sh
+    regexp: '^RUN_AS_USER='
+    line: RUN_AS_USER=sonar

@@ -1,0 +1,17 @@
+---
+# tasks file for sonarqube
+- name: tune linux kernel
+  include_tasks: "{{ role_path }}/tasks/Debian-setup-linux-kernel-tuning.yml"
+
+- name: install packages
+  include_tasks: "{{ role_path }}/tasks/Debian-install-packages.yml"
+
+- name: update-alternatives
+  include_tasks: "{{ role_path }}/tasks/configure-java-symbolic-links.yml"
+
+- name: setup postgreSQL db
+  include_tasks: "{{ role_path }}/tasks/Debian-postgresql-configure.yml"
+
+- name: install sonarqube
+  include_tasks: "{{ role_path }}/tasks/Debian-install-sonarqube.yml"
+  
