@@ -65,7 +65,6 @@
     state: present
 
 - name: Create a new database with name "sonarqube"
-  #   become_method: su
   become_user: postgres
   community.postgresql.postgresql_db:
     name: sonarqube
@@ -78,7 +77,7 @@
     encrypted: yes
 
 - name: GRANT ALL PRIVILEGES ON sonarqube db to sonar
-  # become_user: postgres
+  become_user: postgres
   community.postgresql.postgresql_privs:
     db: sonarqube
     privs: ALL
