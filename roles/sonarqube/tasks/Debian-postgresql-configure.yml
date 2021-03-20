@@ -1,9 +1,21 @@
 ---
-- name: Add specified repository into sources list
-  ansible.builtin.apt_repository:
-    repo: deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main
-    state: present
-    filename: /etc/apt/sources.list.d/pgdg.list
+- name: Touch repo file
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/pgdg.list
+    state: touch
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: template specified repository into sources list
+  ansible.builtin.template:
+    src: "postgresql-repo-list.j2"
+    dest: /etc/apt/sources.list.d/pgdg.list
+
+  # ansible.builtin.apt_repository:
+  #   repo: deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main
+  #   state: present
+  #   filename: /etc/apt/sources.list.d/pgdg.list
 
 # - name: Download the PostgreSQL software
 #   get_url:
