@@ -37,7 +37,7 @@
     - postgresql 
     - postgresql-contrib
     - python-setuptools
-    - python-pip
+    - python3-pip
 
 - name: Make sure psycopg2 is installed (subsequent step requires it)
   pip:
