@@ -100,7 +100,7 @@
 - name: change laravel storage permissions
   ansible.builtin.file:
     path: /var/www/html/storage
-    recursive: yes
+    recurse: yes
     mode: '0755'
 
 # php artisan key:generate
