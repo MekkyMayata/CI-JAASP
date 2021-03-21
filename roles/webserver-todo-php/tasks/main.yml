@@ -108,7 +108,7 @@
 - name: run php commands
   shell: "{{ item }}"
   loop:
-    - "php /var/www/html/artisan migrate"
+    - "php /var/www/html/artisan migrate --force"
     - "php /var/www/html/artisan config:cache"
 # restart php-fpm, httpd
 - name: restart services
