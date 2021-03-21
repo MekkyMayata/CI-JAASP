@@ -106,9 +106,9 @@ nginx_servers:
     backend_ip: x.x.x.x
     backend_port: 9000
 
-  - environment: 
+  - environment: ci
     server_name: artifacts.infradev.devopsninja.me
-    backend_ip: x.x.x.x
+    backend_ip: 3.129.72.62
     backend_port: 8082
 
   - environment: 
