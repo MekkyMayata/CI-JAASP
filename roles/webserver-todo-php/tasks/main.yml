@@ -15,10 +15,6 @@
     state: present
     key: https://rpms.remirepo.net/RPM-GPG-KEY-remi
 
-# - name: check
-#   debug: 
-#     var: "{{ ansible_distribution_major_version }}"
-
 - name: Install remi repo.
   yum:
     name: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
@@ -90,7 +86,44 @@
     src: ".env.sample"
     dest: /var/www/html/.env
 
+# verify all variables are updated
 # edit httpd conf DirectoryIndex
+
 # edit httpd conf DocumentRoot /var/www/html/public
+- name: edit httpd conf
+  ansible.builtin.lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^DocumentRoot \"/var/www/html\"'
+    line: DocumentRoot "/var/www/html/public"
+
+# grant 755 permission to laravel storage
+- name: change laravel storage permissions
+  ansible.builtin.file:
+    path: /var/www/html/storage
+    recursive: yes
+    mode: '0755'
+
+# php artisan key:generate
+# php artisan config:cache
+- name: run php commands
+  shell: "{{ item }}"
+  loop:
+    - "php /var/www/html/artisan migrate"
+    - "php /var/www/html/artisan config:cache"
 # restart php-fpm, httpd
+- name: restart services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - httpd
+    - php-fpm
+
 # set selinux boolean setsebool -P httpd_can_network_connect 1
+# **NB ansible-galaxy collection install ansible.posix
+- name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes

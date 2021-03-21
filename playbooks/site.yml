@@ -6,29 +6,29 @@
   import_playbook: ../static-assignments/sonarqube.yml
 
 
-# - name: import the common playbook
-#   import_playbook: ../static-assignments/common.yml
-#   tags:
-#     - always
+- name: import the common playbook
+  import_playbook: ../static-assignments/common.yml
+  tags:
+    - always
 
-# - name: include the env-vars playbook
-#   import_playbook: ../dynamic-assignments/env-vars.yml
-#   tags:
-#     - always
+- name: include the env-vars playbook
+  import_playbook: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
 
-# - name: include playbook for db server
-#   import_playbook: ../static-assignments/db.yml
-#   tags:
-#     - db_true
+- name: include playbook for db server
+  import_playbook: ../static-assignments/db.yml
+  tags:
+    - db_true
 
-# - name: Include playbook for tooling webserver
-#   import_playbook: ../static-assignments/webservers.yml
-#   tags:
-#     - webserver_true
+- name: Include playbook for tooling webserver
+  import_playbook: ../static-assignments/webservers.yml
+  tags:
+    - webserver_true
 
-# - name: include playbook for artifact_repository
-#   import_playbook: ../static-assignments/artifactory.yml
+- name: include playbook for artifact_repository
+  import_playbook: ../static-assignments/artifactory.yml
 
-# - name: include playbook for webserver-todo-php
-#   import_playbook: ../static-assignments/webserver-todo-php.yml
+- name: include playbook for webserver-todo-php
+  import_playbook: ../static-assignments/webserver-todo-php.yml
 
