@@ -1,12 +1,8 @@
-NameVirtualHost *:80
-
 <Virtualhost *:80>
     UseCanonicalName Off
     VirtualDocumentRoot "/var/www/html/public"
     ServerName todo.xi
     ServerAlias *.todo
-	LogFormat "%V %h %l %u %t \"%r\" %s %b" vcommon
-    ErrorLog "/var/www/html/public/error_log"
     <Directory "/var/www/html/public/">
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
