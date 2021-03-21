@@ -118,6 +118,7 @@
   loop:
     - "php /var/www/html/artisan migrate --force"
     - "php /var/www/html/artisan config:cache"
+    - "php /var/www/html/artisan serve"
 # restart php-fpm, httpd
 - name: restart services
   service:
