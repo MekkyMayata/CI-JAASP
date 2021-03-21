@@ -11,6 +11,8 @@
     state: present
   loop: 
     - gnupg2
+  notify: 
+    - run update
 
 - name: Add APT signing key
   ansible.builtin.apt_key:
