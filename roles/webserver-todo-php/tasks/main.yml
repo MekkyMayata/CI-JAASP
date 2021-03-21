@@ -88,18 +88,23 @@
 
 # verify all variables are updated
 # edit httpd conf DirectoryIndex
+# DirectoryIndex: sets the file that Apache will serve if a directory
+
 
 # edit httpd conf DocumentRoot /var/www/html/public
 - name: edit httpd conf
   ansible.builtin.lineinfile:
     path: /etc/httpd/conf/httpd.conf
-    regexp: '^DocumentRoot \"/var/www/html\"'
-    line: DocumentRoot "/var/www/html/public"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: '^# DirectoryIndex: sets the', line: 'DirectoryIndex index.php index.html' }
+    - { regexp: '^DocumentRoot \"/var/www/html\"', line: DocumentRoot "/var/www/html/public" }
 
 # grant 755 permission to laravel storage
 - name: change laravel storage permissions
   ansible.builtin.file:
-    path: /var/www/html/storage
+    path: /var/www/html/
     recurse: yes
     mode: '0755'
 
