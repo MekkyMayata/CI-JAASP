@@ -87,7 +87,7 @@
     dest: "{{ item.dest }}"
   loop:
     - { src: '.env.sample' , dest: '/var/www/html/.env' }
-    - { src: 'vhost.j2', dest: '/etc/httpd/conf.d/todo.conf' }
+    # - { src: 'vhost.j2', dest: '/etc/httpd/conf.d/todo.conf' }
 
 # verify all variables are updated
 # edit httpd conf DirectoryIndex
