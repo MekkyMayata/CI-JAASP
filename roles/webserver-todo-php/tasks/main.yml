@@ -65,7 +65,7 @@
     remote_src: yes
   
 - name: move code to /var/www/html directory
-  command: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }}/* /var/www/html/
+  shell: cp -r /home/ec2-user/var/lib/jenkins/workspace/{{ item }}/* /var/www/html/
   with_items:
     - "php-todo_main"
 
