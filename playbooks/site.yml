@@ -2,6 +2,10 @@
 - name: Include dynamic variables
   hosts: all
 
+- name: import sonarqube playbook
+  import_playbook: ../static-assignments/sonarqube.yml
+
+
 - name: import the common playbook
   import_playbook: ../static-assignments/common.yml
   tags:
@@ -24,3 +28,7 @@
 
 - name: include playbook for artifact_repository
   import_playbook: ../static-assignments/artifactory.yml
+
+- name: include playbook for webserver-todo-php
+  import_playbook: ../static-assignments/webserver-todo-php.yml
+

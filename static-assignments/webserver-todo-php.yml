@@ -1,0 +1,6 @@
+---
+- hosts: todo
+  become: true
+
+  roles:
+    - webserver-todo-php
