@@ -98,7 +98,7 @@ default_server_name: devopsninja.me
 nginx_servers:
   - environment: ci
     server_name: ci.infradev.devopsninja.me
-    backend_ip: x.x.x.x
+    backend_ip: 13.58.233.49
     backend_port: 8080
 
   - environment: 
