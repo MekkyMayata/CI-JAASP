@@ -1,11 +1,19 @@
 [jenkins]
 172.31.0.10
 
+[artifact_repository:vars]
+ansible_user=ubuntu
+ansible_python_interpreter=/usr/bin/python
+
 [artifact_repository]
 172.31.0.11
 
 [nginx]
 172.31.0.12
+
+[sonarqube:vars]
+ansible_user=ubuntu
+ansible_python_interpreter=/usr/bin/python
 
 [sonarqube]
 172.31.0.13
