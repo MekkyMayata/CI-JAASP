@@ -48,7 +48,6 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    validate: '/usr/sbin/visudo -cf %s'
   loop:
     - { src: "postgresql-repo-list.j2", dest: "/etc/apt/sources.list.d/pgdg.list" }
     - { src: "postgres_pg_hba.j2", dest: "/etc/postgresql/12/main/pg_hba.conf" }
@@ -58,7 +57,6 @@
     name: "{{ postgres_username }}"
     password: "{{ password | password_hash('sha512') }}"
   when: assigned_role == "no"
-
 
 - name: start and enable postgresql
   service:
