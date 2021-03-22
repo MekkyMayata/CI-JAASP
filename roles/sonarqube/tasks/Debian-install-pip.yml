@@ -6,5 +6,5 @@
     dest: /home/ec2-user/get-pip.py
   
 - name: run script
-  command: python3 /home/ec2-user/get-pip.py
+  command: python2 /home/ec2-user/get-pip.py
   when: run_pip_script == 1
