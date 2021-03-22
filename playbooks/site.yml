@@ -1,5 +1,6 @@
 ---
 - name: Include dynamic variables
+  gather_facts: no # due to python interpreter /usr/bin/python absent
   hosts: all
 
 - name: import the common playbook
@@ -35,5 +36,5 @@
 # - name: include playbook for webserver-todo-php
 #   import_playbook: ../static-assignments/webserver-todo-php.yml
 
-# - name: include playbook for nginx reverse proxy
-#   import_playbook: ../static-assignments/nginx.yml
+- name: include playbook for nginx reverse proxy
+  import_playbook: ../static-assignments/nginx.yml
