@@ -42,6 +42,7 @@
     - python3-pip
     - libpq-dev 
     - python-dev
+    - python2
 
 - name: template postgresql pg_hba.conf (for postgres user auth)
   ansible.builtin.template:
