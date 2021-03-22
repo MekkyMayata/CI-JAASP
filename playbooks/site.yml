@@ -16,12 +16,12 @@
 - name: include playbook for db server
   import_playbook: ../static-assignments/db.yml
   tags:
-    - run
+    - skip
 
 - name: Include playbook for tooling webserver
   import_playbook: ../static-assignments/webservers.yml
   tags:
-    - run
+    - skip
 
 - name: include playbook for artifact_repository
   import_playbook: ../static-assignments/artifactory.yml
