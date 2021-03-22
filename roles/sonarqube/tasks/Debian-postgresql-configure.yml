@@ -6,15 +6,13 @@
     mode: '0644'
     owner: root
     group: root
-
+  
 - name: template postgresql pg_hba.conf (for postgres user auth)
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    validate: '/usr/sbin/visudo -cf %s'
   loop:
     - { src: "postgresql-repo-list.j2", dest: "/etc/apt/sources.list.d/pgdg.list" }
-    - { src: "postgres_pg_hba.j2", dest: "/etc/postgresql/13/main/pg_hba.conf" }
 
 # - name: template sudoers.d (for sonar user)
 #   ansible.builtin.template:
@@ -51,13 +49,20 @@
     - python3-pip
     - libpq-dev 
     - python-dev
+    - python2
+  
+- name: template postgresql pg_hba.conf (for postgres user auth)
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { src: "postgres_pg_hba.j2", dest: "/etc/postgresql/13/main/pg_hba.conf" }
   
 - name: Creating user postgres without admin access
   user:
     name: "{{ postgres_username }}"
     password: "{{ password | password_hash('sha512') }}"
   when: assigned_role == "no"
-
 
 - name: start and enable postgresql
   service:

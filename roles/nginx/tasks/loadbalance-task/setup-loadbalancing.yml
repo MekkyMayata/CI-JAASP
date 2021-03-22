@@ -1,0 +1,31 @@
+---
+# notify the restart handler after this!!
+- name: remove nginx default server directive in nginx.conf
+  ansible.builtin.template:
+    src: ../../templates/default_conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+  
+- name: configure nginx loadbalancing
+  ansible.builtin.template:
+    src: ../../templates/loadbalancer.j2
+    dest: /etc/nginx/conf.d/loadbalancer.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: (Handler) Restart Nginx
+
+# static setup, change to dynamic
+- name: add mappings to /etc/hosts
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      {{ item.ip }} {{ item.name }}
+    marker: "# DO NOT EDIT, ANSIBLE MANAGED BLOCK {{ item.name }}"
+  loop:
+    - { name: "{{ host_1 }}", ip: 172.31.32.11 }
+    - { name: "{{ host_2 }}", ip: 172.31.32.12 }
+    - { name: "{{ host_3 }}", ip: 172.31.32.13 }

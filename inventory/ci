@@ -2,10 +2,10 @@
 172.31.0.10
 
 [artifact_repository]
-172.31.0.20
+172.31.0.11 ansible_user=ubuntu
 
 [nginx]
-18.159.134.59
+172.31.0.12
 
 [sonarqube]
-172.31.0.13
+172.31.0.13 ansible_user=ubuntu 

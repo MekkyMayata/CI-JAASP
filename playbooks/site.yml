@@ -1,34 +1,44 @@
 ---
 - name: Include dynamic variables
+  gather_facts: no # due to python interpreter /usr/bin/python absent
   hosts: all
-
-- name: import sonarqube playbook
-  import_playbook: ../static-assignments/sonarqube.yml
-
 
 - name: import the common playbook
   import_playbook: ../static-assignments/common.yml
   tags:
-    - always
+    - skip
 
 - name: include the env-vars playbook
   import_playbook: ../dynamic-assignments/env-vars.yml
   tags:
-    - always
+    - skip
 
 - name: include playbook for db server
   import_playbook: ../static-assignments/db.yml
   tags:
-    - db_true
+    - skip
 
 - name: Include playbook for tooling webserver
   import_playbook: ../static-assignments/webservers.yml
   tags:
-    - webserver_true
+    - skip
 
 - name: include playbook for artifact_repository
   import_playbook: ../static-assignments/artifactory.yml
+  tags:
+    - skip
+
+- name: import sonarqube playbook
+  import_playbook: ../static-assignments/sonarqube.yml
+  tags:
+    - skip
 
 - name: include playbook for webserver-todo-php
   import_playbook: ../static-assignments/webserver-todo-php.yml
+  tags:
+    - run
 
+- name: include playbook for nginx reverse proxy
+  import_playbook: ../static-assignments/nginx.yml
+  tags:
+    - run

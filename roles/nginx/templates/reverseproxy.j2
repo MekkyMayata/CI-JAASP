@@ -1,0 +1,43 @@
+{# SETUP VIRTUAL SERVERS #}
+
+{% for server in nginx_servers %}
+    {% if server.environment is defined and server.environment == "ci" %}
+    server {
+        server_name {{ server.server_name }};
+
+        location ~ { 
+            proxy_pass http://{{ server.backend_ip }}:{{ server.backend_port }};
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+    {% elif server.environment is defined and server.environment == "dev" %}
+    server {
+        server_name {{ server.server_name }};
+
+        location ~ \.php$ {
+            proxy_pass http://{{ server.backend_ip }}:{{ server.backend_port }};
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+    {% elif server.environment is defined and server.environment == "pentest" %}
+    server {
+        server_name {{ server.server_name }};
+
+        location ~ {
+            proxy_pass http://{{ server.backend_ip }}:{{ server.backend_port }};
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+    {% endif %}
+{% endfor %}
+   
+   
