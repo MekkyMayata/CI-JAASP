@@ -21,8 +21,11 @@
 
 - name: add Jfrog Artifactory Repository
   shell: echo "deb https://jfrog.bintray.com/artifactory-debs bionic main" | tee /etc/apt/sources.list.d/jfrog.list
-  notify:
-    - run update
+
+- name: run update
+  apt:
+    update_cache: true
+    upgrade: true
 
 - name: install jfrog-artifactory-oss
   apt:
