@@ -103,22 +103,22 @@ nginx_servers:
 
   - environment: ci
     server_name: sonar.infradev.devopsninja.me
-    backend_ip: 3.17.80.223
+    backend_ip: 3.135.221.18
     backend_port: 9000
 
   - environment: ci
     server_name: artifacts.infradev.devopsninja.me
-    backend_ip: 3.129.72.62
+    backend_ip: 52.15.139.194
     backend_port: 8082
 
-  - environment: 
+  - environment: dev
     server_name: tooling.dev.devopsninja.me
-    backend_ip: x.x.x.x
+    backend_ip: 3.137.177.188
     backend_port: 80
 
-  - environment: 
+  - environment: dev
     server_name: todo.dev.devopsninja.me
-    backend_ip: x.x.x.x
+    backend_ip: 3.129.70.122
     backend_port: 80
 
   - environment: 
