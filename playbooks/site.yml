@@ -26,15 +26,19 @@
 - name: include playbook for artifact_repository
   import_playbook: ../static-assignments/artifactory.yml
   tags:
-    - run
+    - skip
 
 - name: import sonarqube playbook
   import_playbook: ../static-assignments/sonarqube.yml
   tags:
-    - run
+    - skip
 
-# - name: include playbook for webserver-todo-php
-#   import_playbook: ../static-assignments/webserver-todo-php.yml
+- name: include playbook for webserver-todo-php
+  import_playbook: ../static-assignments/webserver-todo-php.yml
+  tags:
+    - run
 
 - name: include playbook for nginx reverse proxy
   import_playbook: ../static-assignments/nginx.yml
+  tags:
+    - run
