@@ -103,7 +103,7 @@ nginx_servers:
 
   - environment: 
     server_name: sonar.infradev.devopsninja.me
-    backend_ip: x.x.x.x
+    backend_ip: 3.17.80.223
     backend_port: 9000
 
   - environment: ci
