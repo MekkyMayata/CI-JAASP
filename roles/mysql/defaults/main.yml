@@ -131,4 +131,5 @@ mysql_replication_master: ''
 mysql_replication_user: []
 
 #*************************db host******************************
-db_host: '172.31.0.14'
+db_host: "172.31.0.14"
+db_user_password: password
