@@ -36,7 +36,7 @@
 - name: include playbook for webserver-todo-php
   import_playbook: ../static-assignments/webserver-todo-php.yml
   tags:
-    - skip
+    - run
 
 - name: include playbook for nginx reverse proxy
   import_playbook: ../static-assignments/nginx.yml
