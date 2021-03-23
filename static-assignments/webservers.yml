@@ -2,11 +2,5 @@
 - hosts: tooling
   become: true
 
-  # prompts for config
-  # vars_prompt:
-  #   - name: "nfs_IP"
-  #     prompt: "Enter the private IP of the nfs server"
-  #     private: no
-
   roles:
     - apache
