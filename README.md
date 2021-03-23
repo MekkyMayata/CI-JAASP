@@ -13,11 +13,6 @@ The following project demonstrates the setup of continuous integration for a PHP
 |PHP             |scripting language for the application                                                                                                       |
 
 
-- Ansible: A configuration management tool. Applied in the automation of the server configurations.
-- Artifactory: Binaries and artifacts management tool. Packaged artifacts were uploaded to its repository
-- Sonarqube: A robust tool for carrying out the implementation of code reliability, maintainability and general software quality gates measures.
-- PHP: scripting language for the application
-
 [Here is a basic walkthrough](https://github.com/MekkyMayata/CI-JAASP/blob/feature/jenkinspipeline-stages/walkthrough.md)
 
 ## Credit:
