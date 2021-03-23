@@ -1,7 +1,7 @@
 # Continuous Integration with Jenkins, Ansible, Artifactory, Sonarqube and PHP
 
 ## Intro
-The following project demonstrates the setup of continuous integration.
+The following project demonstrates the setup of continuous integration for a PHP-based application.
 
 ## TOOLS USED
 - Jenkins: A Continuous Integration automation server. it was used to configure multibranch pipelines, build, test and deploy the application
