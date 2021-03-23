@@ -49,7 +49,9 @@ To deploy to other environments, we make use of parameters in the [jenkinsfile](
 
 
 #### N.B: 
-MAKE SURE YOU INSTALL THE NECESSARY ANSIBLE PLUGINS IN THE JENKINS HOME (BASED ON THE ANSIBLE TASKS YOU WILL BE RUNNING). Also, you may need to change ownership recursively, so the plugins can download in the jenkins home too. (`sudo chown -R jenkins:jenkins /var/lib/jenkins/.ansible/`)
+MAKE SURE YOU INSTALL THE NECESSARY ANSIBLE PLUGINS IN THE JENKINS HOME (BASED ON THE ANSIBLE TASKS YOU WILL BE RUNNING). 
+Also, you may need to change ownership recursively, so the plugins can download in the jenkins home too. 
+`sudo chown -R jenkins:jenkins /var/lib/jenkins/.ansible/`
 `ansible-galaxy collection install community.general`
 `ansible-galaxy collection install community.postgresql`
 `ansible-galaxy collection install ansible.posix`
