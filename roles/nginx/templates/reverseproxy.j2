@@ -29,7 +29,7 @@
     server {
         server_name {{ server.server_name }};
 
-        location ~ {
+        location ~ \.php$ {
             proxy_pass http://{{ server.backend_ip }}:{{ server.backend_port }};
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
